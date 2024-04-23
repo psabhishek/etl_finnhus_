@@ -1,0 +1,7 @@
+.idea
+bin
+include
+lib
+share
+venv_2
+producer/src/main/python/.env
