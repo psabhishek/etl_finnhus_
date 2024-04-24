@@ -1,21 +1,22 @@
 import websocket
 import os
 from dotenv import load_dotenv
-from kafka_utils import producer, topics
+# from kafka_utils import producer, topics
 import socket
 import time
 import json
 load_dotenv()
 
 API_KEY=os.getenv("FINNHUB_API")
-topic = topics["topic_0"]
+# topic = topics["topic_0"]
 
 def on_message(ws, message):
     msgs = json.loads(message)["data"]
     for msg in msgs:
         key = str(msg["t"]+int(time.time()))
-        producer.produce("topic_0", key=key, value=json.dumps(msg), callback=ack)
-        producer.poll(.5)
+        print(key, msg)
+        # producer.produce("topic_0", key=key, value=json.dumps(msg), callback=ack)
+        # producer.poll(.5)
 
 
 def ack(err, msg):
